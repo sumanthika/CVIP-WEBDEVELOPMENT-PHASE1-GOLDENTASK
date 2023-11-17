@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Code Editor</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        #editor-container {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        #editor {
+            height: 100%;
+        }
+
+        #output-container {
+            height: 30%;
+            overflow: hidden;
+        }
+
+        #output {
+            height: 100%;
+            border-top: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="editor-container">
+        <textarea id="editor"># Write your code here</textarea>
+    </div>
+
+    <button onclick="runCode()">Run Code</button>
+
+    <div id="output-container">
+        <iframe id="output"></iframe>
+    </div>
+
+    <script>
+        function runCode() {
+            const code = document.getElementById('editor').value;
+            const iframe = document.getElementById('output');
+
+            // Create a document in the iframe
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            iframeDocument.open();
+            iframeDocument.write(code);
+            iframeDocument.close();
+        }
+    </script>
+</body>
+</html>
